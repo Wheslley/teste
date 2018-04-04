@@ -4,7 +4,7 @@ module.exports = app => {
 	
     const MongoClient = require('mongodb').MongoClient;
     const ObjectID = require('mongodb').ObjectID;
-    const url = "mongodb://mongo_womandb:27017/";
+    const url = "mongodb://womanuser:womanuserapp@ds233769.mlab.com:33769/";
     const respostaSucesso = "{status:SUCESSO}";
     const respostaErro = "{status:ERRO}";
 	
