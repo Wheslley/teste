@@ -13,8 +13,10 @@ app.use(cors());
 app.use(express.static('public'));
 app.use(bodyParser.json());
 
-require('./api')(app);
+require('./routes/agendamento')(app);
+require('./routes/itemServico')(app);
 require('./routes/login')(app);
+require('./routes/servico')(app);
 
 var port = process.env.PORT || 3000;
 
