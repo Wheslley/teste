@@ -14,7 +14,7 @@ app.use(express.static('public'));
 app.use(bodyParser.json());
 
 require('./api')(app);
-require('./login')(app);
+require('./routes/login')(app);
 
 var port = process.env.PORT || 3000;
 
