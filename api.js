@@ -8,16 +8,12 @@ module.exports = app => {
     const respostaSucesso = "{status:SUCESSO}";
     const respostaErro = "{status:ERRO}";
 	
-	app.get('/api/teste', (req, res) => {
-		res.json('{status:SUCESSO}');
-	});
-	
 	app.get('/api/select', (req, res) => {
 		console.log("inicio");
 		MongoClient.connect(url, function (err, db) {
 			if (err) throw err;
             var dbo = db.db("womandb");
-			dbo.collection("item").find({}).toArray(function (err, result) {
+			dbo.collection("usuario").find({}).toArray(function (err, result) {
 				console.log("buscou");
                 if (err) throw err;
                 if (!result){
@@ -33,28 +29,5 @@ module.exports = app => {
             });
 		});
 	});
-	
-    app.post('/api/auditoria', (req, res) => {
-        MongoClient.connect(url, function (err, db) {
-            if (err) throw err;
-            var dbo = db.db("womandb");
-			
-			dbo.collection("item").insertOne(req.body, function (err, res) {
-				console.log("inico insert");
-				if (err) {
-					res.json(respostaErro);
-					throw err;
-				}
-				console.log("fim insert");
-			});
-			console.log("Inseriu");
-            dbo.collection("item").find({}).toArray(function (err, result) {
-                if (err) throw err;
-                if (!result) res.json(respostaErro);
-                else res.json(result);
-                db.close();
-            });
-        });
-    });
 
 }
